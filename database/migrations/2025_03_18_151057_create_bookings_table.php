@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->enum('status', ['pendign', 'confirmed', 'canceled'])->default('pendign');
+            $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending');
             $table->decimal('total_price', 8, 2)->default(0);
             $table->timestamps();
         });

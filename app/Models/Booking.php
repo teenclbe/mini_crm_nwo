@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    protected $fillable = ['customer_name', 'customer_phone', 'customer_email', 'room_id', 'start_time', 'end_time', 'status', 'total_price'];
+    use HasFactory;
 
-    public function room()
+    protected $fillable = [
+        'customer_name',
+        'customer_phone',
+        'customer_email',
+        'start_time',
+        'end_time',
+        'total_price',
+        'status',
+    ];
+
+    public function rooms()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsToMany(Room::class, 'booking_room');
     }
 }

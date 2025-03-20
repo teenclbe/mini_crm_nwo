@@ -2,15 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use function PHPUnit\Framework\returnArgument;
 
 class Room extends Model
 {
-    protected $fillable = ['name', 'description', 'price_per_hour', 'capacity'];
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'capacity',
+        'price_per_hour',
+    ];
 
     public function bookings()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsToMany(Booking::class, 'booking_room');
     }
 }
